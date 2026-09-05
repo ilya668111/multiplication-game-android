@@ -1,0 +1,9 @@
+build/
+*.apk
+*.idsig
+*.p12
+*.jks
+*.keystore
+signing-password.txt
+.DS_Store
+__pycache__/
