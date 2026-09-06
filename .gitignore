@@ -1,9 +1,14 @@
+# Результаты локальной сборки
 build/
 *.apk
 *.idsig
+
+# Личные ключи подписи и пароль
 *.p12
 *.jks
 *.keystore
 signing-password.txt
+
+# Служебные файлы системы и Python
 .DS_Store
 __pycache__/

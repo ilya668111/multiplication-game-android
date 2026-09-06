@@ -1,3 +1,4 @@
+// Проверки примеров, игровых режимов, копилки и повторной отправки просьб.
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const E=require('./android/assets/engine.js');const N=require('./android/assets/names.js');
 let count=0,seen=new Set();

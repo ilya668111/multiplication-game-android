@@ -1,3 +1,4 @@
+// Проверки первого запуска и смены имени с сохранением заработанных минут.
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const E=require('./android/assets/engine.js'),N=require('./android/assets/names.js');
 const storage=new Map([['mayusha.v1',JSON.stringify({wallet:{correct:27,bonus:2,spent:5,events:[]},stars:35,level:'hard'})]]);
