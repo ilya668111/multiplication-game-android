@@ -1,10 +1,15 @@
-import pathlib,subprocess,os,zipfile
+import pathlib,subprocess,os,zipfile,shutil
 root=pathlib.Path(__file__).resolve().parent;tc=pathlib.Path(os.environ['ANDROID_SDK_ROOT']);src=root/'android';out=root/'build';out.mkdir(exist_ok=True)
 jdk=pathlib.Path(os.environ['JAVA_HOME']);bt=tc/'build-tools/36.0.0';jar=tc/'platforms/android-36/android.jar'
 env={**os.environ,'JAVA_HOME':str(jdk),'PATH':str(jdk/'bin')+':'+os.environ['PATH']}
 def run(*a):subprocess.run([str(v) for v in a],env=env,check=True)
+# Keep third-party notices in the repository's licenses directory and bundle them in every APK.
+assets=out/'assets'
+if assets.exists():shutil.rmtree(assets)
+shutil.copytree(src/'assets',assets)
+shutil.copytree(root/'licenses',assets/'licenses')
 run(bt/'aapt2','compile','--dir',src/'res','-o',out/'resources.zip')
-run(bt/'aapt2','link','-o',out/'unsigned.apk','-I',jar,'--manifest',src/'AndroidManifest.xml','-A',src/'assets',out/'resources.zip')
+run(bt/'aapt2','link','-o',out/'unsigned.apk','-I',jar,'--manifest',src/'AndroidManifest.xml','-A',assets,out/'resources.zip')
 (out/'classes').mkdir(exist_ok=True);(out/'dex').mkdir(exist_ok=True)
 run(jdk/'bin/javac','-encoding','UTF-8','--release','8','-classpath',jar,'-d',out/'classes',*src.glob('src/**/*.java'))
 run(bt/'d8','--release','--min-api','26','--lib',jar,'--output',out/'dex',*out.glob('classes/**/*.class'))

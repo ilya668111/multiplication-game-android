@@ -80,4 +80,4 @@ Android 8.0 или новее. Интерфейс адаптирован для 
 
 ## Лицензия
 
-[MIT](LICENSE). Используется библиотека petrovich-js; сведения и лицензия — в [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Код игры распространяется по [лицензии MIT](LICENSE). [Лицензия библиотеки склонения имён](licenses/name-declension.txt) и [сведения о сторонних компонентах](THIRD_PARTY_NOTICES.md) сохранены отдельно.
